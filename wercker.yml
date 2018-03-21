@@ -1,2 +1,6 @@
 box: golang
 build:
+  steps:
+    name: echo
+      code: |
+        echo "Here we go"
