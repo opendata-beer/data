@@ -1,0 +1,18 @@
+{
+  "id": "chur",
+  "name": "Chur!",
+  "country": "nz",
+  "brewery": "behemoth",
+  "style": "NZ Pale Ale",
+  "hops": [
+    "Taiheke",
+    "Motueka",
+    "Nelson Sauvin",
+    "Pacific Jade",
+    "Riwaka"
+  ],
+  "links": [
+    "https://behemothbrewing.co.nz/beer/chur",
+    "ratebeer://243713"
+  ]
+}
