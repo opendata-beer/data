@@ -15,13 +15,14 @@ import (
 type Brewery struct {
     Id string		`json:"id"`
     Name string 	`json:"name"`
+    Country string	`json:"country"`
     Address string	`json:"artist"`
     Links []string	`json:"links"`
 }
 
 type Beer struct {
     Id string		`json:"id"`
-    Name string	    `json:"name"`
+    Name string	    	`json:"name"`
     Country string	`json:"country"`
     Brewery string	`json:"brewery"`
     Style string	`json:"style"`
@@ -72,7 +73,7 @@ func process(params Params) {
    		        content,_ := ioutil.ReadFile(path)
    		        err := yaml.Unmarshal(content, &beer)
         		if (err != nil) {
-                	log.Fatalf("problem when unmarshaling path: %s", err)
+                		log.Fatalf("problem when unmarshaling path: %s", err)
         		}
         		beer.Country = params.Country
         		beer.Brewery = params.Brewery
@@ -81,7 +82,16 @@ func process(params Params) {
         		WriteJson("countries/" + beer.Country + "/breweries/" + beer.Brewery + "/beers/" + beer.Id, string(jsonBeer))
         	}
         	if (strings.HasSuffix(path,".brewery")) {
+   		        brewery := new(Brewery)
+   		        content,_ := ioutil.ReadFile(path)
+   		        err := yaml.Unmarshal(content, &brewery)
+        		if (err != nil) {
+                		log.Fatalf("problem when unmarshaling path: %s", err)
+        		}
+        		brewery.Country = params.Country
 
+        		jsonBrewery,err := json.MarshalIndent(brewery, "", "  ");
+        		WriteJson("countries/" + brewery.Country + "/breweries/" + brewery.Id, string(jsonBeer))
         	}
     	} 
     }
