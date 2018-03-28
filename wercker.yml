@@ -2,6 +2,21 @@ box: golang
 build:
   steps:
     - script:
-        name: echo
+        name: go build
         code: |
-          echo "Here we go"
+          go get github.com/ghodss/yaml
+          go run ./build/build.go
+deploy:
+  steps:
+    - install-packages:
+        packages: git ssh-client
+    - nztomas/gh-pages@0.2.4:
+        token: $GIT_TOKEN
+        domain: api.opendata.beer
+        basedir: output
+        branch: master
+        repo: opendata-beer/api
+    - script:
+        name: "notify website about update"
+        code: |-
+          curl http://www.opendata.beer/reload
