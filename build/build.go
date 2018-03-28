@@ -91,7 +91,7 @@ func process(params Params) {
         		brewery.Country = params.Country
 
         		jsonBrewery,err := json.MarshalIndent(brewery, "", "  ");
-        		WriteJson("countries/" + brewery.Country + "/breweries/" + brewery.Id, string(jsonBeer))
+        		WriteJson("countries/" + brewery.Country + "/breweries/" + brewery.Id, string(jsonBrewery))
         	}
     	} 
     }
